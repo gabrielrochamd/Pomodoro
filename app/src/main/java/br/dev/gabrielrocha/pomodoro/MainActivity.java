@@ -1,4 +1,4 @@
-package com.example.androidblankstarter;
+package br.dev.gabrielrocha.pomodoro;
 
 import android.app.Activity;
 import android.os.Bundle;
