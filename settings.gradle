@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "AndroidBlankStarter"
+rootProject.name = "Pomodoro"
 include ':app'
