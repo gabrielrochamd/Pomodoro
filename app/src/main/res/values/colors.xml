@@ -1,2 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources />
+<resources>
+    <color name="blue_950">#04090D</color>
+    <color name="blue_900">#153047</color>
+    <color name="blue_800">#234F75</color>
+    <color name="blue_700">#316EA3</color>
+    <color name="blue_600">#3F8DD1</color>
+    <color name="blue_500">#4CACFF</color>
+    <color name="blue_400">#6EBBFF</color>
+    <color name="blue_300">#8FCBFF</color>
+    <color name="blue_200">#B0DAFF</color>
+    <color name="blue_100">#D9EEFF</color>
+    <color name="blue_50">#F2F9FF</color>
+
+    <color name="gray_950">#0D0D0D</color>
+    <color name="gray_900">#1A1A1A</color>
+    <color name="gray_800">#333333</color>
+    <color name="gray_700">#4D4D4D</color>
+    <color name="gray_600">#666666</color>
+    <color name="gray_500">#808080</color>
+    <color name="gray_400">#999999</color>
+    <color name="gray_300">#B3B3B3</color>
+    <color name="gray_200">#CCCCCC</color>
+    <color name="gray_100">#E6E6E6</color>
+    <color name="gray_50">#F2F2F2</color>
+
+    <color name="green_950">#040D06</color>
+    <color name="green_900">#14401D</color>
+    <color name="green_800">#216630</color>
+    <color name="green_700">#2E8C43</color>
+    <color name="green_600">#3DB257</color>
+    <color name="green_500">#4DDA6C</color>
+    <color name="green_400">#69E084</color>
+    <color name="green_300">#89E89E</color>
+    <color name="green_200">#AAF0B9</color>
+    <color name="green_100">#D9FAE1</color>
+    <color name="green_50">#F2FFF5</color>
+
+    <color name="red_950">#0D0404</color>
+    <color name="red_900">#471515</color>
+    <color name="red_800">#752323</color>
+    <color name="red_700">#A33131</color>
+    <color name="red_600">#D13F3F</color>
+    <color name="red_500">#FF4C4C</color>
+    <color name="red_400">#FF6E6E</color>
+    <color name="red_300">#FF8F8F</color>
+    <color name="red_200">#FFB0B0</color>
+    <color name="red_100">#FFD9D9</color>
+    <color name="red_50">#FFF2F2</color>
+
+    <color name="black_alpha_950">#FF000000</color>
+    <color name="black_alpha_900">#E6000000</color>
+    <color name="black_alpha_800">#CF000000</color>
+    <color name="black_alpha_700">#B5000000</color>
+    <color name="black_alpha_600">#9E000000</color>
+    <color name="black_alpha_500">#85000000</color>
+    <color name="black_alpha_400">#6E000000</color>
+    <color name="black_alpha_300">#54000000</color>
+    <color name="black_alpha_200">#3D000000</color>
+    <color name="black_alpha_100">#26000000</color>
+    <color name="black_alpha_50">#0D000000</color>
+
+    <color name="blue_alpha_950">#FF4CACFF</color>
+    <color name="blue_alpha_900">#E64CACFF</color>
+    <color name="blue_alpha_800">#CF4CACFF</color>
+    <color name="blue_alpha_700">#B54CACFF</color>
+    <color name="blue_alpha_600">#9E4CACFF</color>
+    <color name="blue_alpha_500">#854CACFF</color>
+    <color name="blue_alpha_400">#6E4CACFF</color>
+    <color name="blue_alpha_300">#544CACFF</color>
+    <color name="blue_alpha_200">#3D4CACFF</color>
+    <color name="blue_alpha_100">#264CACFF</color>
+    <color name="blue_alpha_50">#0D4CACFF</color>
+
+    <color name="green_alpha_950">#FF4DDA6E</color>
+    <color name="green_alpha_900">#E64DDA6E</color>
+    <color name="green_alpha_800">#CF4DDA6E</color>
+    <color name="green_alpha_700">#B54DDA6E</color>
+    <color name="green_alpha_600">#9E4DDA6E</color>
+    <color name="green_alpha_500">#854DDA6E</color>
+    <color name="green_alpha_400">#6E4DDA6E</color>
+    <color name="green_alpha_300">#544DDA6E</color>
+    <color name="green_alpha_200">#3D4DDA6E</color>
+    <color name="green_alpha_100">#264DDA6E</color>
+    <color name="green_alpha_50">#0D4DDA6E</color>
+
+    <color name="red_alpha_950">#FFFF4C4C</color>
+    <color name="red_alpha_900">#E6FF4C4C</color>
+    <color name="red_alpha_800">#CFFF4C4C</color>
+    <color name="red_alpha_700">#B5FF4C4C</color>
+    <color name="red_alpha_600">#9EFF4C4C</color>
+    <color name="red_alpha_500">#85FF4C4C</color>
+    <color name="red_alpha_400">#6EFF4C4C</color>
+    <color name="red_alpha_300">#54FF4C4C</color>
+    <color name="red_alpha_200">#3DFF4C4C</color>
+    <color name="red_alpha_100">#26FF4C4C</color>
+    <color name="red_alpha_50">#0DFF4C4C</color>
+
+    <color name="white_alpha_950">#FFFFFFFF</color>
+    <color name="white_alpha_900">#E6FFFFFF</color>
+    <color name="white_alpha_800">#CFFFFFFF</color>
+    <color name="white_alpha_700">#B5FFFFFF</color>
+    <color name="white_alpha_600">#9EFFFFFF</color>
+    <color name="white_alpha_500">#85FFFFFF</color>
+    <color name="white_alpha_400">#6EFFFFFF</color>
+    <color name="white_alpha_300">#54FFFFFF</color>
+    <color name="white_alpha_200">#3DFFFFFF</color>
+    <color name="white_alpha_100">#26FFFFFF</color>
+    <color name="white_alpha_50">#0DFFFFFF</color>
+</resources>
