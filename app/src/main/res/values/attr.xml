@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="background" format="reference|color" />
+    <attr name="chipSolidColor" format="reference|color" />
+    <attr name="chipStrokeColor" format="reference|color" />
+    <attr name="imageButtonPrimaryBackgroundTint" format="reference|color" />
+    <attr name="imageButtonSecondaryBackgroundTint" format="reference|color" />
+    <attr name="imageButtonTint" format="reference|color" />
+</resources>

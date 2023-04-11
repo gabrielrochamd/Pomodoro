@@ -1,3 +1,38 @@
 <resources>
-    <style name="Theme.Pomodoro" parent="android:Theme.Light.NoTitleBar" />
+
+    <style name="Theme.Pomodoro.Blue" parent="android:Theme.Light.NoTitleBar">
+        <item name="chipSolidColor">@color/blue_alpha_100</item>
+        <item name="chipStrokeColor">@color/blue_900</item>
+        <item name="imageButtonPrimaryBackgroundTint">@color/blue_alpha_700</item>
+        <item name="imageButtonSecondaryBackgroundTint">@color/blue_alpha_100</item>
+        <item name="imageButtonTint">@color/blue_900</item>
+        <item name="background">@color/blue_50</item>
+        <item name="android:textColor">@color/blue_900</item>
+        <item name="android:tint">@color/blue_900</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="Theme.Pomodoro.Green" parent="android:Theme.Light.NoTitleBar">
+        <item name="chipSolidColor">@color/green_alpha_100</item>
+        <item name="chipStrokeColor">@color/green_900</item>
+        <item name="imageButtonPrimaryBackgroundTint">@color/green_alpha_700</item>
+        <item name="imageButtonSecondaryBackgroundTint">@color/green_alpha_100</item>
+        <item name="imageButtonTint">@color/green_900</item>
+        <item name="background">@color/green_50</item>
+        <item name="android:textColor">@color/green_900</item>
+        <item name="android:tint">@color/green_900</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="Theme.Pomodoro.Red" parent="android:Theme.Light.NoTitleBar">
+        <item name="chipSolidColor">@color/red_alpha_100</item>
+        <item name="chipStrokeColor">@color/red_900</item>
+        <item name="imageButtonPrimaryBackgroundTint">@color/red_alpha_700</item>
+        <item name="imageButtonSecondaryBackgroundTint">@color/red_alpha_100</item>
+        <item name="imageButtonTint">@color/red_900</item>
+        <item name="background">@color/red_50</item>
+        <item name="android:textColor">@color/red_900</item>
+        <item name="android:tint">@color/red_900</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
 </resources>
