@@ -44,14 +44,17 @@
 
         <ImageButton
             style="@style/ImageButton.Medium.Secondary"
-            android:src="@drawable/ic_dots_three_outline_fill" />
+            android:src="@drawable/ic_dots_three_outline_fill"
+            android:contentDescription="@string/description_settings" />
 
         <ImageButton
             style="@style/ImageButton.Large.Primary"
-            android:src="@drawable/ic_play_fill" />
+            android:src="@drawable/ic_play_fill"
+            android:contentDescription="@string/description_start" />
 
         <ImageButton
             style="@style/ImageButton.Medium.Secondary"
-            android:src="@drawable/ic_fast_forward_fill" />
+            android:src="@drawable/ic_fast_forward_fill"
+            android:contentDescription="@string/description_fast_forward" />
     </LinearLayout>
 </LinearLayout>
