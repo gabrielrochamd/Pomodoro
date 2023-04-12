@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Chip">
+        <item name="android:background">@drawable/chip_background</item>
+        <item name="android:backgroundTint">@null</item>
+        <item name="android:divider">@drawable/chip_vertical_divider</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:showDividers">middle</item>
+    </style>
+
+    <style name="ImageButton" parent="android:Widget.ImageButton">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:tint">?attr/imageButtonTint</item>
+    </style>
+
+    <style name="ImageButton.Large" parent="ImageButton">
+        <item name="android:background">@drawable/button_large_background</item>
+        <item name="android:paddingBottom">32dp</item>
+        <item name="android:paddingEnd">48dp</item>
+        <item name="android:paddingStart">48dp</item>
+        <item name="android:paddingTop">32dp</item>
+    </style>
+
+    <style name="ImageButton.Large.Primary" parent="ImageButton.Large">
+        <item name="android:backgroundTint">?attr/imageButtonPrimaryBackgroundTint</item>
+    </style>
+
+    <style name="ImageButton.Medium" parent="ImageButton">
+        <item name="android:background">@drawable/button_medium_background</item>
+        <item name="android:padding">24dp</item>
+    </style>
+
+    <style name="ImageButton.Medium.Secondary" parent="ImageButton.Medium">
+        <item name="android:backgroundTint">?attr/imageButtonSecondaryBackgroundTint</item>
+    </style>
+
+    <style name="ImageButton.Small" parent="ImageButton">
+        <item name="android:background">@drawable/button_small_background</item>
+        <item name="android:padding">8dp</item>
+    </style>
+</resources>
