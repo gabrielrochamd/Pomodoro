@@ -26,6 +26,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/text_view_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"
@@ -48,6 +49,7 @@
             android:contentDescription="@string/description_settings" />
 
         <ImageButton
+            android:id="@+id/image_button_start_stop"
             style="@style/ImageButton.Large.Primary"
             android:src="@drawable/ic_play_fill"
             android:contentDescription="@string/description_start" />
