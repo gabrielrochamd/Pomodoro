@@ -55,8 +55,9 @@
             android:contentDescription="@string/description_start" />
 
         <ImageButton
+            android:id="@+id/image_button_fast_forward"
             style="@style/ImageButton.Medium.Secondary"
-            android:src="@drawable/ic_fast_forward_fill"
-            android:contentDescription="@string/description_fast_forward" />
+            android:contentDescription="@string/description_fast_forward"
+            android:src="@drawable/ic_fast_forward_fill" />
     </LinearLayout>
 </LinearLayout>

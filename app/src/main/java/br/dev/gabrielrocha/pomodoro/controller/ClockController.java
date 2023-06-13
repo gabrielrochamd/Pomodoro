@@ -57,7 +57,7 @@ public abstract class ClockController {
     }
 
     public static void stop() {
-        scheduledFuture.cancel(false);
+        if (scheduledFuture != null) scheduledFuture.cancel(false);
         pauseCallback.run();
     }
 

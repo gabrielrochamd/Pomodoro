@@ -22,7 +22,9 @@ public class MainActivity extends Activity {
     private int[] currentModeSequence = MODE_SEQUENCE;
 
     private ScheduledFuture<?> scheduledFutureVibration, scheduledFutureFlashingOff, scheduledFutureFlashingOn;
-    private View.OnClickListener advanceClickListener, pauseClickListener, startClickListener;
+    private View.OnClickListener advanceClickListener;
+    private View.OnClickListener pauseClickListener;
+    private View.OnClickListener startClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +57,20 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ImageButton imageButtonFastForward = findViewById(R.id.image_button_fast_forward);
         ImageButton imageButtonStartStop = findViewById(R.id.image_button_start_stop);
         TextView textViewMode = findViewById(R.id.text_view_mode);
         TextView textViewTime = findViewById(R.id.text_view_time);
 
         ClockController.setPauseCallback(() -> imageButtonStartStop.setImageResource(R.drawable.ic_play_fill));
         ClockController.setStartCallback(() -> imageButtonStartStop.setImageResource(R.drawable.ic_pause_fill));
+
+        View.OnClickListener fastForwardClickListener = v -> {
+            ClockController.stop();
+            shiftModeSequence(currentModeSequence);
+            imageButtonStartStop.setOnClickListener(startClickListener);
+            recreate();
+        };
 
         advanceClickListener = v -> {
             scheduledFutureVibration.cancel(false);
@@ -102,6 +112,7 @@ public class MainActivity extends Activity {
         ClockController.prepare(mode);
 
         textViewTime.setText(timerText());
+        imageButtonFastForward.setOnClickListener(fastForwardClickListener);
         imageButtonStartStop.setOnClickListener(startClickListener);
     }
 
