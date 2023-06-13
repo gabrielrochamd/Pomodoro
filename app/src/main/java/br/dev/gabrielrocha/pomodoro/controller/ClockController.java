@@ -9,10 +9,15 @@ import br.dev.gabrielrocha.pomodoro.model.Mode;
 public abstract class ClockController {
     public static final int MINUTE_IN_SECONDS = 60;
 
+    private static boolean finished = false;
     private static Runnable pauseCallback;
     private static ScheduledFuture<?> scheduledFuture;
     private static Runnable startCallback;
     private static int time;
+
+    public static boolean getFinished() {
+        return finished;
+    }
 
     public static void setPauseCallback(Runnable pauseCallback) {
         ClockController.pauseCallback = pauseCallback;
@@ -37,10 +42,14 @@ public abstract class ClockController {
     }
 
     public static void start(MyApplication myApplication, Runnable callback) {
+        finished = false;
         if (scheduledFuture == null || scheduledFuture.isCancelled()) {
             scheduledFuture = myApplication.getScheduledExecutorService().scheduleAtFixedRate(() -> {
                 time--;
-                if (time <= 0) stop();
+                if (time <= 0) {
+                    stop();
+                    finished = true;
+                }
                 callback.run();
             }, 1, 1, TimeUnit.SECONDS);
             startCallback.run();
