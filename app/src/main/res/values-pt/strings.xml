@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="description_fast_forward">Pular</string>
+    <string name="description_pause">Pausar</string>
+    <string name="description_settings">Configurações</string>
+    <string name="description_start">Iniciar</string>
+    <string name="label_focus">Foco</string>
+    <string name="label_long_break">Pausa Longa</string>
+    <string name="label_short_break">Pausa Curta</string>
+    <string name="label_unavailable">Indisponível</string>
+</resources>

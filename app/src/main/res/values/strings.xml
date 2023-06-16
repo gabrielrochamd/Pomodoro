@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pomodoro</string>
+    <string name="app_name" translatable="false">Pomodoro</string>
     <string name="description_fast_forward">Fast Forward</string>
     <string name="description_pause">Pause</string>
     <string name="description_settings">Settings</string>
