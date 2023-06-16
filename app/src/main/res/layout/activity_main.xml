@@ -43,9 +43,10 @@
         android:showDividers="middle">
 
         <ImageButton
+            android:id="@+id/image_button_options"
             style="@style/ImageButton.Medium.Secondary"
-            android:src="@drawable/ic_dots_three_outline_fill"
-            android:contentDescription="@string/description_settings" />
+            android:contentDescription="@string/description_settings"
+            android:src="@drawable/ic_dots_three_outline_fill" />
 
         <ImageButton
             android:id="@+id/image_button_start_stop"

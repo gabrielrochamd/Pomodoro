@@ -9,6 +9,7 @@ import android.os.Vibrator;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Locale;
 import java.util.concurrent.ScheduledFuture;
@@ -58,6 +59,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         ImageButton imageButtonFastForward = findViewById(R.id.image_button_fast_forward);
+        ImageButton imageButtonOptions = findViewById(R.id.image_button_options);
         ImageButton imageButtonStartStop = findViewById(R.id.image_button_start_stop);
         TextView textViewMode = findViewById(R.id.text_view_mode);
         TextView textViewTime = findViewById(R.id.text_view_time);
@@ -113,6 +115,7 @@ public class MainActivity extends Activity {
 
         textViewTime.setText(timerText());
         imageButtonFastForward.setOnClickListener(fastForwardClickListener);
+        imageButtonOptions.setOnClickListener(v -> Toast.makeText(this, R.string.label_unavailable, Toast.LENGTH_SHORT).show());
         imageButtonStartStop.setOnClickListener(startClickListener);
     }
 

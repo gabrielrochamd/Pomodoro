@@ -7,4 +7,5 @@
     <string name="label_focus">Focus</string>
     <string name="label_long_break">Long Break</string>
     <string name="label_short_break">Short Break</string>
+    <string name="label_unavailable">Unavailable</string>
 </resources>
