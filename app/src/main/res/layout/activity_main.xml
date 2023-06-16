@@ -33,7 +33,6 @@
         android:includeFontPadding="false"
         android:lineSpacingMultiplier="0.7"
         android:lines="2"
-        android:text="00\n00"
         android:textSize="256sp" />
 
     <LinearLayout
