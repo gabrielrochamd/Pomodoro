@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Pomodoro.Red" parent="android:Theme.Light.NoTitleBar">
+        <item name="chipSolidColor">@color/red_alpha_100</item>
+        <item name="chipStrokeColor">@color/red_900</item>
+        <item name="imageButtonPrimaryBackgroundTint">@color/red_alpha_700</item>
+        <item name="imageButtonSecondaryBackgroundTint">@color/red_alpha_100</item>
+        <item name="imageButtonTint">@color/red_900</item>
+        <item name="background">@color/red_50</item>
+        <item name="android:textColor">@color/red_900</item>
+        <item name="android:tint">@color/red_900</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowSplashScreenBackground">@color/red_100</item>
+    </style>
+</resources>
