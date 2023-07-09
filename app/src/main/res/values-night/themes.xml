@@ -34,5 +34,6 @@
         <item name="android:textColor">@color/red_50</item>
         <item name="android:tint">@color/red_50</item>
         <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 </resources>
