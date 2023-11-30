@@ -1,9 +1,14 @@
 package br.dev.gabrielrocha.pomodoro;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.view.View;
@@ -17,18 +22,29 @@ import java.util.concurrent.TimeUnit;
 
 import br.dev.gabrielrocha.pomodoro.controller.ClockController;
 import br.dev.gabrielrocha.pomodoro.model.Mode;
+import br.dev.gabrielrocha.pomodoro.service.ClockService;
 
 public class MainActivity extends Activity {
     private static final int[] MODE_SEQUENCE = new int[]{1, 2, 1, 2, 1, 3};
     private int[] currentModeSequence = MODE_SEQUENCE;
 
     private ScheduledFuture<?> scheduledFutureVibration, scheduledFutureFlashingOff, scheduledFutureFlashingOn;
+
+    TextView textViewTime;
     private View.OnClickListener advanceClickListener;
     private View.OnClickListener pauseClickListener;
     private View.OnClickListener startClickListener;
 
+    private ClockService.Binder clockServiceBinder;
+    private ClockService clockService;
+    private boolean isBound = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requestPermissions(new String[]{Manifest.permission.POST_NOTIFICATIONS}, 0);
+        }
+
         if (savedInstanceState != null) {
             if (savedInstanceState.containsKey("CURRENT_MODE_SEQUENCE")) {
                 currentModeSequence = savedInstanceState.getIntArray("CURRENT_MODE_SEQUENCE");
@@ -62,12 +78,13 @@ public class MainActivity extends Activity {
         ImageButton imageButtonOptions = findViewById(R.id.image_button_options);
         ImageButton imageButtonStartStop = findViewById(R.id.image_button_start_stop);
         TextView textViewMode = findViewById(R.id.text_view_mode);
-        TextView textViewTime = findViewById(R.id.text_view_time);
+        textViewTime = findViewById(R.id.text_view_time);
 
         ClockController.setPauseCallback(() -> imageButtonStartStop.setImageResource(R.drawable.ic_play_fill));
         ClockController.setStartCallback(() -> imageButtonStartStop.setImageResource(R.drawable.ic_pause_fill));
 
         View.OnClickListener fastForwardClickListener = v -> {
+            ClockController.resetTime();
             ClockController.stop();
             shiftModeSequence(currentModeSequence);
             imageButtonStartStop.setOnClickListener(startClickListener);
@@ -88,7 +105,6 @@ public class MainActivity extends Activity {
         };
         startClickListener = v -> {
             ClockController.start((MyApplication) getApplication(), () -> {
-                runOnUiThread(() -> textViewTime.setText(timerText()));
                 if (ClockController.getFinished()) {
                     MyApplication myApplication = (MyApplication) getApplication();
                     scheduledFutureVibration = myApplication.getScheduledExecutorService().scheduleAtFixedRate(() -> {
@@ -110,13 +126,46 @@ public class MainActivity extends Activity {
             imageButtonStartStop.setOnClickListener(pauseClickListener);
         };
 
+        if (ClockController.getState() == ClockController.State.FINISHED) {
+            ClockController.prepare(mode);
+        } else if (ClockController.getState() == ClockController.State.RUNNING) {
+            imageButtonStartStop.setImageResource(R.drawable.ic_pause_fill);
+            imageButtonStartStop.setOnClickListener(pauseClickListener);
+        }
+
         textViewMode.setText(modeStringRes);
-        ClockController.prepare(mode);
 
         textViewTime.setText(timerText());
         imageButtonFastForward.setOnClickListener(fastForwardClickListener);
         imageButtonOptions.setOnClickListener(v -> Toast.makeText(this, R.string.label_unavailable, Toast.LENGTH_SHORT).show());
         imageButtonStartStop.setOnClickListener(startClickListener);
+
+        bindClockService();
+    }
+
+    private final ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            clockServiceBinder = (ClockService.Binder) service;
+            clockService = clockServiceBinder.getService();
+            isBound = true;
+            setUpdateRunnable();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            clockServiceBinder = null;
+            isBound = false;
+        }
+    };
+
+    private void setUpdateRunnable() {
+        clockService.updateRunnable = () -> runOnUiThread(() -> textViewTime.setText(timerText()));
+    }
+
+    private void bindClockService() {
+        Intent intent = new Intent(this, ClockService.class);
+        bindService(intent, serviceConnection, BIND_AUTO_CREATE);
     }
 
     @Override
