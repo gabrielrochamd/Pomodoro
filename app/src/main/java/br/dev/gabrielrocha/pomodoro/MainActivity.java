@@ -37,7 +37,8 @@ public class MainActivity extends Activity {
 
     private ClockService.Binder clockServiceBinder;
     private ClockService clockService;
-    private boolean isBound = false;
+
+    private ImageButton imageButtonStartStop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +77,8 @@ public class MainActivity extends Activity {
 
         ImageButton imageButtonFastForward = findViewById(R.id.image_button_fast_forward);
         ImageButton imageButtonOptions = findViewById(R.id.image_button_options);
-        ImageButton imageButtonStartStop = findViewById(R.id.image_button_start_stop);
         TextView textViewMode = findViewById(R.id.text_view_mode);
+        imageButtonStartStop = findViewById(R.id.image_button_start_stop);
         textViewTime = findViewById(R.id.text_view_time);
 
         ClockController.setPauseCallback(() -> imageButtonStartStop.setImageResource(R.drawable.ic_play_fill));
@@ -103,34 +104,15 @@ public class MainActivity extends Activity {
             ClockController.stop();
             imageButtonStartStop.setOnClickListener(startClickListener);
         };
-        startClickListener = v -> {
-            ClockController.start((MyApplication) getApplication(), () -> {
-                if (ClockController.getFinished()) {
-                    MyApplication myApplication = (MyApplication) getApplication();
-                    scheduledFutureVibration = myApplication.getScheduledExecutorService().scheduleAtFixedRate(() -> {
-                        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-                        }
-                    }, 0, 1, TimeUnit.SECONDS);
-                    scheduledFutureFlashingOff = myApplication.getScheduledExecutorService().scheduleAtFixedRate(() -> runOnUiThread(() -> textViewTime.setVisibility(View.INVISIBLE)), 500, 1000, TimeUnit.MILLISECONDS);
-                    scheduledFutureFlashingOn = myApplication.getScheduledExecutorService().scheduleAtFixedRate(() -> runOnUiThread(() -> textViewTime.setVisibility(View.VISIBLE)), 0, 1000, TimeUnit.MILLISECONDS);
-                    myApplication.getScheduledExecutorService().schedule(() -> {
-                        scheduledFutureVibration.cancel(false);
-                        scheduledFutureFlashingOff.cancel(false);
-                        scheduledFutureFlashingOn.cancel(false);
-                    }, 10, TimeUnit.SECONDS);
-                    imageButtonStartStop.setOnClickListener(advanceClickListener);
-                }
-            });
-            imageButtonStartStop.setOnClickListener(pauseClickListener);
-        };
+        startClickListener = v -> startClockView();
 
         if (ClockController.getState() == ClockController.State.FINISHED) {
             ClockController.prepare(mode);
+            imageButtonStartStop.setOnClickListener(startClickListener);
         } else if (ClockController.getState() == ClockController.State.RUNNING) {
-            imageButtonStartStop.setImageResource(R.drawable.ic_pause_fill);
-            imageButtonStartStop.setOnClickListener(pauseClickListener);
+            startClockView();
+        } else {
+            imageButtonStartStop.setOnClickListener(startClickListener);
         }
 
         textViewMode.setText(modeStringRes);
@@ -138,7 +120,6 @@ public class MainActivity extends Activity {
         textViewTime.setText(timerText());
         imageButtonFastForward.setOnClickListener(fastForwardClickListener);
         imageButtonOptions.setOnClickListener(v -> Toast.makeText(this, R.string.label_unavailable, Toast.LENGTH_SHORT).show());
-        imageButtonStartStop.setOnClickListener(startClickListener);
 
         bindClockService();
     }
@@ -148,14 +129,12 @@ public class MainActivity extends Activity {
         public void onServiceConnected(ComponentName name, IBinder service) {
             clockServiceBinder = (ClockService.Binder) service;
             clockService = clockServiceBinder.getService();
-            isBound = true;
             setUpdateRunnable();
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
             clockServiceBinder = null;
-            isBound = false;
         }
     };
 
@@ -180,6 +159,29 @@ public class MainActivity extends Activity {
             modeSequence[i] = modeSequence[i + 1];
         }
         modeSequence[modeSequence.length - 1] = aux;
+    }
+
+    private void startClockView() {
+        ClockController.start((MyApplication) getApplication(), () -> {
+            if (ClockController.getFinished()) {
+                MyApplication myApplication = (MyApplication) getApplication();
+                scheduledFutureVibration = myApplication.getScheduledExecutorService().scheduleAtFixedRate(() -> {
+                    Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+                    }
+                }, 0, 1, TimeUnit.SECONDS);
+                scheduledFutureFlashingOff = myApplication.getScheduledExecutorService().scheduleAtFixedRate(() -> runOnUiThread(() -> textViewTime.setVisibility(View.INVISIBLE)), 500, 1000, TimeUnit.MILLISECONDS);
+                scheduledFutureFlashingOn = myApplication.getScheduledExecutorService().scheduleAtFixedRate(() -> runOnUiThread(() -> textViewTime.setVisibility(View.VISIBLE)), 0, 1000, TimeUnit.MILLISECONDS);
+                myApplication.getScheduledExecutorService().schedule(() -> {
+                    scheduledFutureVibration.cancel(false);
+                    scheduledFutureFlashingOff.cancel(false);
+                    scheduledFutureFlashingOn.cancel(false);
+                }, 10, TimeUnit.SECONDS);
+                imageButtonStartStop.setOnClickListener(advanceClickListener);
+            }
+        });
+        imageButtonStartStop.setOnClickListener(pauseClickListener);
     }
 
     private String timerText() {

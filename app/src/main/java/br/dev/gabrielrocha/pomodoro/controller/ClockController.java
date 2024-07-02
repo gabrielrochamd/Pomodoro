@@ -73,8 +73,8 @@ public abstract class ClockController {
                 }
                 callback.run();
             }, 1, 1, TimeUnit.SECONDS);
-            startCallback.run();
         }
+        startCallback.run();
     }
 
     public static void stop() {
@@ -93,5 +93,5 @@ public abstract class ClockController {
         return new int[]{minutes, seconds};
     }
 
-    public enum State { FINISHED, PAUSED, PREPARED, RUNNING }
+    public enum State {FINISHED, PAUSED, PREPARED, RUNNING}
 }
